@@ -37,8 +37,12 @@ export default function LearningSituationForm({ onSubmit, loading }: Props) {
   // Manejar cambio en el input numérico para length y convertir a número
   const handleLengthChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    const parsed = value === '' ? undefined : Number(value);
-    setValue('length', parsed as any, { shouldValidate: true });
+    if (value === '') {
+        setValue('length', 200, { shouldValidate: true });
+    } else {
+        const parsed = Number(value);
+        setValue('length', parsed, { shouldValidate: true });
+    }
   };
 
   return (
