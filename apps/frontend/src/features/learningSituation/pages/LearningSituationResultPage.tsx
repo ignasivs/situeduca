@@ -1,9 +1,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { LearningSituationInput } from '../components/LearningSituationForm';
-import Spinner from '../components/Spinner';
 import { useRouter } from 'next/navigation';
+
+type StoredData = {
+  input: any;
+  result: string;
+};
 
 export default function LearningSituationResultPage() {
   const [loading, setLoading] = useState(true);
@@ -18,32 +21,14 @@ export default function LearningSituationResultPage() {
       return;
     }
 
-    const input: LearningSituationInput = JSON.parse(stored);
-
-    const fetchData = async () => {
-      try {
-        const response = await fetch('/api/learning-situation', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(input),
-        });
-
-        if (!response.ok) {
-          throw new Error('Error en la generación');
-        }
-
-        const data = await response.json();
-        setResult(data.result); // Asegúrate de que el backend devuelva `{ result: string }`
-      } catch (err) {
-        setError((err as Error).message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
+    try {
+      const data: StoredData = JSON.parse(stored);
+      setResult(data.result);
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setLoading(false);
+    }
   }, [router]);
 
   if (loading) {
@@ -81,5 +66,11 @@ export default function LearningSituationResultPage() {
         </button>
       </div>
     </div>
+  );
+}
+
+function Spinner() {
+  return (
+    <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>
   );
 }
