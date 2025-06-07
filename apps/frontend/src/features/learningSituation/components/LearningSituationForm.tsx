@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -34,14 +35,29 @@ export default function LearningSituationForm({ onSubmit, loading }: Props) {
     mode: 'onBlur',
   });
 
+  // Cargar datos guardados si existen
+  useEffect(() => {
+    const stored = sessionStorage.getItem('learningSituationFormData');
+    if (stored) {
+      const parsed = JSON.parse(stored) as LearningSituationInput;
+      setValue('course', parsed.course);
+      setValue('ageRange', parsed.ageRange);
+      setValue('topic', parsed.topic);
+      setValue('length', parsed.length);
+      if (parsed.additionalNotes) {
+        setValue('additionalNotes', parsed.additionalNotes);
+      }
+    }
+  }, [setValue]);
+
   // Manejar cambio en el input numérico para length y convertir a número
   const handleLengthChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     if (value === '') {
-        setValue('length', 200, { shouldValidate: true });
+      setValue('length', 200, { shouldValidate: true });
     } else {
-        const parsed = Number(value);
-        setValue('length', parsed, { shouldValidate: true });
+      const parsed = Number(value);
+      setValue('length', parsed, { shouldValidate: true });
     }
   };
 
