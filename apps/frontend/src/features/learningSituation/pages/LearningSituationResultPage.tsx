@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { LearningSituationInput } from '../components/LearningSituationForm';
 
 type StoredData = {
-  input: any;
+  input: LearningSituationInput;
   result: string;
 };
 
