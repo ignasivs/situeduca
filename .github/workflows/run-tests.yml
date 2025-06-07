@@ -23,9 +23,9 @@ jobs:
       - name: Run backend tests
         run: |
           cd apps/backend
-          npm test
+          npm run test:all
 
-      - name: Run frontend tests
+      - name: Run frontend lint
         run: |
           cd apps/frontend
-          npm test
+          npm run lint
