@@ -6,6 +6,7 @@ import { GenerateLearningSituation } from "../application/GenerateLearningSituat
 import { GroqService } from "../infrastructure/GroqService";
 import { LearningSituationController } from "../interfaces/controllers/LearningSituationController";
 import createRoutes from "../interfaces/routes";
+import { PingController } from "../interfaces/controllers/PingController";
 
 dotenv.config();
 
@@ -26,9 +27,10 @@ export class ExpressServer {
 
     // Inyectamos el caso de uso en el controlador
     const learningSituationController = new LearningSituationController(generateLearningSituation);
+    const pingController = new PingController();
 
     // Pasamos el controlador a las rutas
-    const routes = createRoutes(learningSituationController);
+    const routes = createRoutes(learningSituationController, pingController);
 
     this.app.use("/api", routes);
   }
