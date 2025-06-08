@@ -44,8 +44,8 @@ export default function LearningSituationPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 py-12 px-4">
-      <h1 className="text-3xl font-bold text-center text-blue-700 mb-10">
+    <main className="min-h-screen bg-primary-bg py-12 px-4">
+      <h1 className="text-3xl font-bold text-center text-primary-main mb-10">
         Generador de Situaciones de Aprendizaje
       </h1>
 
