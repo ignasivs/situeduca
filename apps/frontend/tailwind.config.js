@@ -29,7 +29,40 @@ module.exports = {
           warning: '#F59E0B', // Amarillo cálido
         },
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            color: '#4B5563',
+            h1: {
+              color: '#1F2937',
+            },
+            h2: {
+              color: '#4B6BFF',
+            },
+            h3: {
+              color: '#1F2937',
+            },
+            strong: {
+              color: '#4B6BFF',
+            },
+            ul: {
+              li: {
+                '&::marker': {
+                  color: '#4B6BFF',
+                },
+              },
+            },
+            ol: {
+              li: {
+                '&::marker': {
+                  color: '#4B6BFF',
+                },
+              },
+            },
+          },
+        },
+      }
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 }
