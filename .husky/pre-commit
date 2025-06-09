@@ -12,4 +12,4 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-echo "✅ Todo OK! Se permite commit."
+echo "✅ Todo OK! Commit correcto."
