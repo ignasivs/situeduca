@@ -132,7 +132,6 @@ export default function LearningSituationResultPage() {
             }
             // Detectar si es una lista numerada
             const listMatch = paragraph.match(/^(\d+)\.\s/);
-            let listIndex = 1;
             if (listMatch) {
               // Encontramos un item de lista: renderiza <ol> con start correcto
               const currentNumber = Number(listMatch[1]);
@@ -161,7 +160,6 @@ export default function LearningSituationResultPage() {
                 </ol>
               );
 
-              listIndex = currentNumber + 1; // Avanza el contador para la próxima lista
               return olElement;
             }                    
             // Detectar si es una lista numerada
