@@ -7,7 +7,7 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.16",
