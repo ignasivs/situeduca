@@ -1,0 +1,15 @@
+echo "🔍 Corriendo tests del backend..."
+cd apps/backend && npm run test:all
+if [ $? -ne 0 ]; then
+  echo "❌ Tests fallidos en el backend. No se permite commit."
+  exit 1
+fi
+
+echo "🧹 Corriendo lint en el frontend..."
+cd ../frontend && npm run lint
+if [ $? -ne 0 ]; then
+  echo "❌ Lint fallido en el frontend. No se permite commit."
+  exit 1
+fi
+
+echo "✅ Todo OK! Commit correcto."
